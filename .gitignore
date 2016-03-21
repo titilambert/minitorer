@@ -1,0 +1,7 @@
+*.swp
+
+/tmp
+/telegraf/telegraf
+/conf.d
+/dashboards
+dashboard_tmp.json
