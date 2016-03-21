@@ -55,7 +55,7 @@ dashboard_restore:
             echo '{"overwrite": true, "dashboard":' > $(TMPDASH); \
             find dashboards -wholename "$$dash" -exec cat {} >> $(TMPDASH) \; ;\
             echo '}' >> $(TMPDASH) ;\
-            sed -i 's/"id": *[0-9]*,/"id": null,/' $(TMPDASH) ;\
+            sed -i '0,/"id": *[0-9]*,/{s/"id": *[0-9]*,/"id": null,/}' $(TMPDASH) ;\
             echo curl -H "Content-Type: application/json" -XPOST -d @$(TMPDASH) http://admin:admin@127.0.0.1:3000/api/dashboards/db/; \
             curl -H "Content-Type: application/json" -XPOST -d @$(TMPDASH) http://admin:admin@127.0.0.1:3000/api/dashboards/db/; \
             echo ; \
